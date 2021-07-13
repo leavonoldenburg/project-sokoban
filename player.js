@@ -25,14 +25,14 @@ class Player {
     }
   }
 
-  /*playerWallIntersect() {
-    let walls = this.game.walls;
+  playerWallIntersect() {
+    const walls = this.game.walls;
     //let playerCanMove = true;
-    for (let wall of walls) {
+    for (const wall of walls) {
       const playerAndWallIntersect = wall.checkIntersection(this);
       if (playerAndWallIntersect) {
         //playerCanMove = false;
-        //$('*').off('keyup keydown keypress');
+        $('*').off('keyup keydown keypress');
       }
     }
   }
