@@ -23,16 +23,21 @@ class Player {
         this.x -= 50;
         break;
     }
-    /*
-    const walls = this.game.walls;
-    let playerCanMove = true;
-    for (const wall of walls) {
+  }
+
+  /*playerWallIntersect() {
+    let walls = this.game.walls;
+    //let playerCanMove = true;
+    for (let wall of walls) {
       const playerAndWallIntersect = wall.checkIntersection(this);
       if (playerAndWallIntersect) {
-        playerCanMove = false;
+        //playerCanMove = false;
+        //$('*').off('keyup keydown keypress');
       }
     }
-    if (playerCanMove) {
+  }
+
+  /*if (playerCanMove) {
       const boxes = this.games.boxes;
       for (const box of boxes) {
         const playerAndBoxIntersect = box.checkIntersection(this);
@@ -56,16 +61,10 @@ class Player {
       }
     }
     */
-  }
 
   runLogic() {
     // if standing in front of wall, stop
     //if standing in front of a box, push
-  }
-
-  checkIntersection(wallX, wallY) {
-    //check if player is intersecting with wall
-    // if this.x=550 && this.y = 400 -> only move up
   }
 
   paint() {

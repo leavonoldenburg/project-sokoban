@@ -57,80 +57,68 @@ class Game {
     const lowerEdgeImage = new Image();
     lowerEdgeImage.src = './images/Tile_05.png';
 
-    this.wall = [
-      this.context.drawImage(leftUpperCornerImage, 0, 50 * 5, 50, 50),
-      this.context.drawImage(leftUpperCornerImage, 50 * 2, 50 * 3, 50, 50),
-      this.context.drawImage(leftUpperCornerImage, 50 * 6, 50 * 5, 50, 50),
-      this.context.drawImage(leftUpperCornerImage, 50 * 13, 50 * 5, 50, 50),
-      this.context.drawImage(leftUpperCornerImage, 50 * 4, 50 * 0, 50, 50),
-      this.context.drawImage(leftUpperCornerImage, 50 * 12, 50 * 8, 50, 50),
-      this.context.drawImage(rightUpperCornerImage, 50 * 8, 50 * 0, 50, 50),
-      this.context.drawImage(rightUpperCornerImage, 50 * 9, 50 * 3, 50, 50),
-      this.context.drawImage(rightUpperCornerImage, 50 * 18, 50 * 5, 50, 50),
-      this.context.drawImage(rightUpperCornerImage, 50 * 7, 50 * 5, 50, 50),
-      this.context.drawImage(rightUpperCornerImage, 50 * 13, 50 * 8, 50, 50),
-      this.context.drawImage(rightUpperCornerImage, 50 * 4, 50 * 8, 50, 50),
-      this.context.drawImage(leftLowerCornerImage, 0, 50 * 8, 50, 50),
-      this.context.drawImage(leftLowerCornerImage, 50 * 4, 50 * 10, 50, 50),
-      this.context.drawImage(leftLowerCornerImage, 50 * 6, 50 * 6, 50, 50),
-      this.context.drawImage(leftLowerCornerImage, 50 * 9, 50 * 6, 50, 50),
-      this.context.drawImage(leftLowerCornerImage, 50 * 8, 50 * 3, 50, 50),
-      this.context.drawImage(rightLowerCornerImage, 50 * 4, 50 * 3, 50, 50),
-      this.context.drawImage(rightLowerCornerImage, 50 * 7, 50 * 6, 50, 50),
-      this.context.drawImage(rightLowerCornerImage, 50 * 10, 50 * 10, 50, 50),
-      this.context.drawImage(rightLowerCornerImage, 50 * 18, 50 * 9, 50, 50),
-      this.context.drawImage(rightLowerCornerImage, 50 * 13, 50 * 6, 50, 50),
-      this.context.drawImage(rightEdgeImage, 50 * 18, 50 * 8, 50, 50),
-      this.context.drawImage(rightEdgeImage, 50 * 18, 50 * 7, 50, 50),
-      this.context.drawImage(rightEdgeImage, 50 * 18, 50 * 6, 50, 50),
-      this.context.drawImage(leftImage, 50 * 6, 50 * 8, 50, 50),
-      this.context.drawImage(middleImage, 50 * 7, 50 * 8, 50, 50),
-      this.context.drawImage(rightImage, 50 * 8, 50 * 8, 50, 50),
-      this.context.drawImage(leftEdgeImage, 0, 50 * 6, 50, 50),
-      this.context.drawImage(leftEdgeImage, 0, 50 * 7, 50, 50),
-      this.context.drawImage(upperEdgeImage, 50 * 5, 0, 50, 50),
-      this.context.drawImage(upperEdgeImage, 50 * 6, 0, 50, 50),
-      this.context.drawImage(upperEdgeImage, 50 * 7, 0, 50, 50),
-      this.context.drawImage(lowerEdgeImage, 50 * 5, 50 * 10, 50, 50),
-      this.context.drawImage(lowerEdgeImage, 50 * 6, 50 * 10, 50, 50),
-      this.context.drawImage(lowerEdgeImage, 50 * 7, 50 * 10, 50, 50),
-      this.context.drawImage(lowerEdgeImage, 50 * 8, 50 * 10, 50, 50),
-      this.context.drawImage(lowerEdgeImage, 50 * 9, 50 * 10, 50, 50)
-    ];
-
+    this.context.drawImage(leftUpperCornerImage, 0, 50 * 5, 50, 50);
+    this.context.drawImage(leftUpperCornerImage, 50 * 2, 50 * 3, 50, 50);
+    this.context.drawImage(leftUpperCornerImage, 50 * 6, 50 * 5, 50, 50);
+    this.context.drawImage(leftUpperCornerImage, 50 * 13, 50 * 5, 50, 50);
+    this.context.drawImage(leftUpperCornerImage, 50 * 4, 50 * 0, 50, 50);
+    this.context.drawImage(leftUpperCornerImage, 50 * 12, 50 * 8, 50, 50);
+    this.context.drawImage(rightUpperCornerImage, 50 * 8, 50 * 0, 50, 50);
+    this.context.drawImage(rightUpperCornerImage, 50 * 9, 50 * 3, 50, 50);
+    this.context.drawImage(rightUpperCornerImage, 50 * 18, 50 * 5, 50, 50);
+    this.context.drawImage(rightUpperCornerImage, 50 * 7, 50 * 5, 50, 50);
+    this.context.drawImage(rightUpperCornerImage, 50 * 13, 50 * 8, 50, 50);
+    this.context.drawImage(rightUpperCornerImage, 50 * 4, 50 * 8, 50, 50);
+    this.context.drawImage(leftLowerCornerImage, 0, 50 * 8, 50, 50);
+    this.context.drawImage(leftLowerCornerImage, 50 * 4, 50 * 10, 50, 50);
+    this.context.drawImage(leftLowerCornerImage, 50 * 6, 50 * 6, 50, 50);
+    this.context.drawImage(leftLowerCornerImage, 50 * 9, 50 * 6, 50, 50);
+    this.context.drawImage(leftLowerCornerImage, 50 * 8, 50 * 3, 50, 50);
+    this.context.drawImage(rightLowerCornerImage, 50 * 4, 50 * 3, 50, 50);
+    this.context.drawImage(rightLowerCornerImage, 50 * 7, 50 * 6, 50, 50);
+    this.context.drawImage(rightLowerCornerImage, 50 * 10, 50 * 10, 50, 50);
+    this.context.drawImage(rightLowerCornerImage, 50 * 18, 50 * 9, 50, 50);
+    this.context.drawImage(rightLowerCornerImage, 50 * 13, 50 * 6, 50, 50);
+    this.context.drawImage(rightEdgeImage, 50 * 18, 50 * 8, 50, 50);
+    this.context.drawImage(rightEdgeImage, 50 * 18, 50 * 7, 50, 50);
+    this.context.drawImage(rightEdgeImage, 50 * 18, 50 * 6, 50, 50);
+    this.context.drawImage(leftImage, 50 * 6, 50 * 8, 50, 50);
+    this.context.drawImage(middleImage, 50 * 7, 50 * 8, 50, 50);
+    this.context.drawImage(rightImage, 50 * 8, 50 * 8, 50, 50);
+    this.context.drawImage(leftEdgeImage, 0, 50 * 6, 50, 50);
+    this.context.drawImage(leftEdgeImage, 0, 50 * 7, 50, 50);
+    this.context.drawImage(upperEdgeImage, 50 * 5, 0, 50, 50);
+    this.context.drawImage(upperEdgeImage, 50 * 6, 0, 50, 50);
+    this.context.drawImage(upperEdgeImage, 50 * 7, 0, 50, 50);
+    this.context.drawImage(lowerEdgeImage, 50 * 5, 50 * 10, 50, 50);
+    this.context.drawImage(lowerEdgeImage, 50 * 6, 50 * 10, 50, 50);
+    this.context.drawImage(lowerEdgeImage, 50 * 7, 50 * 10, 50, 50);
+    this.context.drawImage(lowerEdgeImage, 50 * 8, 50 * 10, 50, 50);
+    this.context.drawImage(lowerEdgeImage, 50 * 9, 50 * 10, 50, 50);
     this.context.fillStyle = 'green';
-
     this.context.fillRect(50, 50 * 8, 50, 50);
     this.context.fillRect(50 * 2, 50 * 8, 50, 50);
     this.context.fillRect(50 * 3, 50 * 8, 50, 50);
-
     this.context.fillRect(50 * 4, 50 * 9, 50, 50);
-
     this.context.fillRect(50 * 10, 50 * 9, 50, 50);
     this.context.fillRect(50 * 10, 50 * 8, 50, 50);
     this.context.fillRect(50 * 11, 50 * 9, 50, 50);
-
     this.context.fillRect(50 * 12, 50 * 9, 50, 50);
     this.context.fillRect(50 * 13, 50 * 9, 50, 50);
     this.context.fillRect(50 * 14, 50 * 9, 50, 50);
     this.context.fillRect(50 * 15, 50 * 9, 50, 50);
     this.context.fillRect(50 * 16, 50 * 9, 50, 50);
     this.context.fillRect(50 * 17, 50 * 9, 50, 50);
-
     this.context.fillRect(50 * 17, 50 * 5, 50, 50);
     this.context.fillRect(50 * 16, 50 * 5, 50, 50);
     this.context.fillRect(50 * 15, 50 * 5, 50, 50);
-
     this.context.fillRect(50 * 12, 50 * 6, 50, 50);
     this.context.fillRect(50 * 11, 50 * 6, 50, 50);
     this.context.fillRect(50 * 10, 50 * 6, 50, 50);
-
     this.context.fillRect(50 * 9, 50 * 5, 50, 50);
     this.context.fillRect(50 * 9, 50 * 4, 50, 50);
-
     this.context.fillRect(50 * 8, 50 * 2, 50, 50);
     this.context.fillRect(50 * 8, 50 * 1, 50, 50);
-
     this.context.fillRect(50 * 4, 50 * 1, 50, 50);
     this.context.fillRect(50 * 4, 50 * 2, 50, 50);
     this.context.fillRect(50 * 3, 50 * 3, 50, 50);
@@ -166,7 +154,88 @@ class Game {
     this.context.closePath();
   }
 
+  addMapBorders() {
+    this.walls = [];
+    const wall1 = new Walls(this, leftUpperCornerImage, 0, 50 * 5);
+    this.walls.push(wall1);
+    const wall2 = new Walls(this, leftUpperCornerImage, 50 * 2, 50 * 3);
+    this.walls.push(wall2);
+    const wall3 = new Walls(this, leftUpperCornerImage, 50 * 6, 50 * 5);
+    this.walls.push(wall3);
+    const wall4 = new Walls(this, leftUpperCornerImage, 50 * 13, 50 * 5);
+    this.walls.push(wall4);
+    const wall5 = new Walls(this, leftUpperCornerImage, 50 * 4, 50 * 0);
+    this.walls.push(wall5);
+    const wall6 = new Walls(this, leftUpperCornerImage, 50 * 12, 50 * 8);
+    this.walls.push(wall6);
+    const wall7 = new Walls(this, rightUpperCornerImage, 50 * 8, 50 * 0);
+    this.walls.push(wall7);
+    const wall8 = new Walls(this, rightUpperCornerImage, 50 * 9, 50 * 3);
+    this.walls.push(wall8);
+    const wall9 = new Walls(this, rightUpperCornerImage, 50 * 18, 50 * 5);
+    this.walls.push(wall9);
+    const wall10 = new Walls(this, rightUpperCornerImage, 50 * 7, 50 * 5);
+    this.walls.push(wall10);
+    const wall11 = new Walls(this, rightUpperCornerImage, 50 * 13, 50 * 8);
+    this.walls.push(wall11);
+    const wall12 = new Walls(this, rightUpperCornerImage, 50 * 4, 50 * 8);
+    this.walls.push(wall12);
+    const wall13 = new Walls(this, leftLowerCornerImage, 0, 50 * 8);
+    this.walls.push(wall13);
+    const wall14 = new Walls(this, leftLowerCornerImage, 50 * 4, 50 * 10);
+    this.walls.push(wall14);
+    const wall15 = new Walls(this, leftLowerCornerImage, 50 * 6, 50 * 6);
+    this.walls.push(wall15);
+    const wall16 = new Walls(this, leftLowerCornerImage, 50 * 9, 50 * 6);
+    this.walls.push(wall16);
+    const wall17 = new Walls(this, leftLowerCornerImage, 50 * 8, 50 * 3);
+    this.walls.push(wall17);
+    const wall18 = new Walls(this, leftLowerCornerImage, 50 * 4, 50 * 3);
+    this.walls.push(wall18);
+    const wall19 = new Walls(this, rightLowerCornerImage, 50 * 7, 50 * 6);
+    this.walls.push(wall19);
+    const wall20 = new Walls(this, rightLowerCornerImage, 50 * 10, 50 * 10);
+    this.walls.push(wall20);
+    const wall21 = new Walls(this, rightLowerCornerImage, 50 * 18, 50 * 9);
+    this.walls.push(wall21);
+    const wall22 = new Walls(this, rightLowerCornerImage, 50 * 13, 50 * 6);
+    this.walls.push(wall22);
+    const wall23 = new Walls(this, rightEdgeImage, 50 * 18, 50 * 8);
+    this.walls.push(wall23);
+    const wall24 = new Walls(this, rightEdgeImage, 50 * 18, 50 * 7);
+    this.walls.push(wall24);
+    const wall25 = new Walls(this, rightEdgeImage, 50 * 18, 50 * 6);
+    this.walls.push(wall25);
+    const wall26 = new Walls(this, leftImage, 50 * 6, 50 * 8);
+    this.walls.push(wall26);
+    const wall27 = new Walls(this, middleImage, 50 * 7, 50 * 8);
+    this.walls.push(wall27);
+    const wall28 = new Walls(this, rightImage, 50 * 8, 50 * 8);
+    this.walls.push(wall28);
+    const wall29 = new Walls(this, leftEdgeImage, 0, 50 * 6);
+    this.walls.push(wall29);
+    const wall30 = new Walls(this, leftEdgeImage, 0, 50 * 7);
+    this.walls.push(wall30);
+    const wall31 = new Walls(this, upperEdgeImage, 50 * 5, 0);
+    this.walls.push(wall31);
+    const wall32 = new Walls(this, upperEdgeImage, 50 * 6, 0);
+    this.walls.push(wall32);
+    const wall33 = new Walls(this, upperEdgeImage, 50 * 7, 0);
+    this.walls.push(wall33);
+    const wall34 = new Walls(this, lowerEdgeImage, 50 * 5, 50 * 10);
+    this.walls.push(wall34);
+    const wall35 = new Walls(this, lowerEdgeImage, 50 * 6, 50 * 10);
+    this.walls.push(wall35);
+    const wall36 = new Walls(this, lowerEdgeImage, 50 * 7, 50 * 10);
+    this.walls.push(wall36);
+    const wall37 = new Walls(this, lowerEdgeImage, 50 * 8, 50 * 10);
+    this.walls.push(wall37);
+    const wall38 = new Walls(this, lowerEdgeImage, 50 * 9, 50 * 10);
+    this.walls.push(wall38);
+  }
+
   drawBoxes() {
+    this.boxes = [];
     this.context.fillStyle = 'yellow';
     this.context.fillRect(50 * 5, 50 * 2, 50, 50);
     this.context.fillRect(50 * 7, 50 * 3, 50, 50);
@@ -174,6 +243,21 @@ class Game {
     this.context.fillRect(50 * 7, 50 * 4, 50, 50);
     this.context.fillRect(50 * 2, 50 * 7, 50, 50);
     this.context.fillRect(50 * 5, 50 * 7, 50, 50);
+  }
+
+  addBoxesBorders() {
+    const box1 = new Box(this, 50 * 5, 50 * 2);
+    this.boxes.push(box1);
+    const box2 = new Box(this, 50 * 7, 50 * 3);
+    this.boxes.push(box2);
+    const box3 = new Box(this, 50 * 5, 50 * 4);
+    this.boxes.push(box3);
+    const box4 = new Box(this, 50 * 7, 50 * 4);
+    this.boxes.push(box4);
+    const box5 = new Box(this, 50 * 2, 50 * 7);
+    this.boxes.push(box5);
+    const box6 = new Box(this, 50 * 5, 50 * 7);
+    this.boxes.push(box6);
   }
 
   start() {
