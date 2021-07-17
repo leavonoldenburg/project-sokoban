@@ -1,5 +1,5 @@
 const enemyImage = new Image();
-enemyImage.src = './images/Woodcutter.png';
+enemyImage.src = './images/0_Golem_Walking_000.png';
 
 class Enemy {
   constructor(game, x, y) {
@@ -9,7 +9,21 @@ class Enemy {
   }
 
   runLogic() {
-    //run around randomly in enclosed space
+    this.y++;
+
+    if (this.y === 360) {
+      this.y--;
+      this.x++;
+      if (this.x === 825) {
+        this.y--;
+        this.x--;
+        if (this.y === 250) {
+          this.x--;
+        }
+      }
+    }
+
+    //run around randomly in enclosed space -> stop at wall and reverse movement
     //when door opened, fire 3 times in a row on player, then stop for several seconds
   }
 
@@ -20,9 +34,7 @@ class Enemy {
   paint() {
     const context = this.game.context;
     context.save();
-    enemyImage.onload = function () {
-      context.drawImage(enemyImage, game.enemy.x, game.enemy.y, 80, 100);
-    };
+    context.drawImage(enemyImage, game.enemy.x, game.enemy.y, 100, 100);
     context.restore();
   }
 }

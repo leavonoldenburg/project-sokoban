@@ -3,15 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Sokoban with enemies</title>
+    <title>The Golem Took My Family</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <canvas width="950" height="550"></canvas>
+    <div class="screen" id="screen-start">
+      <h1>The Golem Took My Family</h1>
+      <button>Start Game</button>
+    </div>
+    <div class="screen" id="screen-playing" style="display: none;">
+      <canvas width="950" height="550"></canvas>
+    </div>
+    <div class="screen" id="screen-game-over" style="display: none;">
+      <h3>You lost the game :(</h3>
+      <button>Try Again</button>
+
+    
 
     <script src="/player.js"></script>
     <script src="/sword.js"></script>
     <script src="/enemy.js"></script>
+    <script src="/box.js"></script>
+    <script src="/walls.js"></script>
     <script src="/game.js"></script>
     <script src="/script.js"></script>
   </body>
