@@ -40,6 +40,9 @@ lowerLeftImage.src = './images/Tile_51.png';
 const leftSideImage = new Image();
 leftSideImage.src = './images/Tile_37.png';
 
+const backgroundImg = new Image();
+backgroundImg.src = './images/Tile_12.png';
+
 const allImages = {
   leftUpperCorner: leftUpperCornerImage,
   rightUpperCorner: rightUpperCornerImage,
@@ -54,7 +57,8 @@ const allImages = {
   sides: sidesImage,
   lower: lowerImage,
   lowerLeft: lowerLeftImage,
-  leftSide: leftSideImage
+  leftSide: leftSideImage,
+  background: backgroundImg
 };
 
 class Wall {

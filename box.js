@@ -1,5 +1,6 @@
 class Box {
   constructor(game, x, y) {
+    this.game = game;
     this.x = x;
     this.y = y;
   }
@@ -29,5 +30,14 @@ class Box {
         }
       }
     }
+  }
+
+  checkIntersection(element) {
+    return (
+      element.x + 50 >= this.x ||
+      element.x <= this.x + 50 ||
+      element.y + 50 >= this.y ||
+      element.y <= this.y + 50
+    );
   }
 }

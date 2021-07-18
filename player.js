@@ -18,17 +18,37 @@ class Player {
   move(direction) {
     switch (direction) {
       case 'up':
-        this.y -= 50;
-        break;
+        if (this.playerCanMoveUp) {
+          this.y -= 50;
+          break;
+        } else {
+          this.player.y -= 0;
+          break;
+        }
       case 'down':
-        this.y += 50;
-        break;
+        if (this.playerCanMoveDown) {
+          this.y += 50;
+          break;
+        } else {
+          this.player.y += 0;
+          break;
+        }
       case 'right':
-        this.x += 50;
-        break;
+        if (this.playerCanMoveRight) {
+          this.x += 50;
+          break;
+        } else {
+          this.player.x += 0;
+          break;
+        }
       case 'left':
-        this.x -= 50;
-        break;
+        if (this.playerCanMoveLeft) {
+          this.x -= 50;
+          break;
+        } else {
+          this.player.x += 0;
+          break;
+        }
       case 'space':
         this.paintAttack();
         break;
@@ -86,9 +106,26 @@ class Player {
       }
     }
   }
+
   playerEnemyIntersect() {
     if (this.game.enemy.checkIntersection(this)) {
       this.game.lose();
+    }
+  }
+
+  playerAttackEnemy(element) {
+    //when player stands in front, behind, above or below enemy and hits space, enemy dead
+    if (this.x + 50 === element.x && this.move('space')) {
+      //enemy dead
+    }
+    if (this.x === element.x + 50 && this.move('space')) {
+      //enemy dead
+    }
+    if (this.y + 50 === element.y && this.move('space')) {
+      //enemy dead
+    }
+    if (this.y === element.x + 50 && this.move('space')) {
+      //enemy dead
     }
   }
 

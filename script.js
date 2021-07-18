@@ -3,11 +3,13 @@ const canvasElement = document.querySelector('canvas');
 const screenStartElement = document.getElementById('screen-start');
 const screenPlayingElement = document.getElementById('screen-playing');
 const screenGameOverElement = document.getElementById('screen-game-over');
+const screenGameWonElement = document.getElementById('screen-game-won');
 
 const screenElements = {
   start: screenStartElement,
   playing: screenPlayingElement,
-  gameOver: screenGameOverElement
+  gameOver: screenGameOverElement,
+  gameWon: screenGameWonElement
 };
 
 const game = new Game(canvasElement, screenElements);

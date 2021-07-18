@@ -13,7 +13,7 @@ canvas {
 .screen {
   width: 950px;
   height: 550px;
-  border: 2px solid green;
+  border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
