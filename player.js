@@ -44,23 +44,16 @@ class Player {
     this.playerCanMoveDown = true;
 
     for (const wall of walls) {
-      //if (wall.checkIntersection(this)) {
-      //playerCanMove = false;
-
       if (this.x + 50 >= wall.x) {
-        //this.game.disableMoveRight();
         //this.playerCanMoveRight = false;
       }
       if (this.x <= wall.x + 50) {
-        //this.game.disableMoveLeft();
         //this.playerCanMoveLeft = false;
       }
       if (this.y + 50 >= wall.y) {
-        //this.game.disableMoveDown();
         //this.playerCanMoveDown = false;
       }
       if (this.y <= wall.y + 50) {
-        //this.game.disableMoveUp();
         //this.playerCanMoveUp = false;
       }
     }
@@ -91,6 +84,11 @@ class Player {
         }
         // Also check if box intersects with wall
       }
+    }
+  }
+  playerEnemyIntersect() {
+    if (this.game.enemy.checkIntersection(this)) {
+      this.game.lose();
     }
   }
 

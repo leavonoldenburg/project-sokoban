@@ -10,7 +10,6 @@ class Enemy {
 
   runLogic() {
     this.y++;
-
     if (this.y === 360) {
       this.y--;
       this.x++;
@@ -22,13 +21,16 @@ class Enemy {
         }
       }
     }
-
-    //run around randomly in enclosed space -> stop at wall and reverse movement
-    //when door opened, fire 3 times in a row on player, then stop for several seconds
   }
 
   checkIntersection(element) {
     //check if enemy has overlapping coordinates with player
+    return (
+      element.x + 50 > this.x ||
+      element.x < this.x + 50 ||
+      element.y + 50 > this.y ||
+      element.y < this.y + 50
+    );
   }
 
   paint() {

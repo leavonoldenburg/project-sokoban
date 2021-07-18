@@ -1,4 +1,3 @@
-const 
 const leftUpperCornerImage = new Image();
 leftUpperCornerImage.src = './images/Tile_01.png';
 
@@ -55,11 +54,12 @@ const allImages = {
   sides: sidesImage,
   lower: lowerImage,
   lowerLeft: lowerLeftImage,
-  leftSide: leftSideImage,
-}
+  leftSide: leftSideImage
+};
 
 class Wall {
   constructor(game, x, y, imageName) {
+    this.game = game;
     this.x = x;
     this.y = y;
     this.imageName = imageName;
@@ -69,7 +69,7 @@ class Wall {
     const imageName = this.imageName;
     const image = allImages[imageName];
 
-    this.game.context.drawImage(image, this.x, this.y);
+    this.game.context.drawImage(image, this.x, this.y, 50, 50);
   }
 
   /*checkIntersection(element) {

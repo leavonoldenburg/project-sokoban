@@ -180,9 +180,7 @@ class Game {
   }*/
 
   drawMap() {
-    /*
-
-    this.context.drawImage(leftUpperCornerImage, 0, 50 * 5, 50, 50);
+    /* this.context.drawImage(leftUpperCornerImage, 0, 50 * 5, 50, 50);
     this.context.drawImage(leftUpperCornerImage, 50 * 2, 50 * 3, 50, 50);
     this.context.drawImage(leftUpperCornerImage, 50 * 6, 50 * 5, 50, 50);
     this.context.drawImage(leftUpperCornerImage, 50 * 13, 50 * 5, 50, 50);
@@ -253,6 +251,10 @@ class Game {
     this.context.drawImage(lowerImage, 50 * 13, 50 * 9, 50, 50);
     this.context.drawImage(lowerLeftImage, 50 * 12, 50 * 9, 50, 50);
     */
+
+    for (const wall of this.walls) {
+      wall.draw();
+    }
 
     const backgroundImg = new Image();
     backgroundImg.src = './images/Tile_12.png';
@@ -340,10 +342,6 @@ class Game {
     this.context.arc(50 * 17 + 25, 50 * 6 + 25, 10, 0, 2 * Math.PI);
     this.context.fill();
     this.context.closePath();
-
-    for (const wall of this.walls) {
-      wall.draw();
-    }
   }
 
   addMapBorders() {
@@ -354,7 +352,7 @@ class Game {
       for (let column = 0; column < wallMap[row].length; column++) {
         const value = wallMap[row][column];
         if (value !== 0) {
-          const wall = new Walls(
+          const wall = new Wall(
             this,
             column * GRID_SIZE,
             row * GRID_SIZE,
@@ -548,7 +546,6 @@ class Game {
     this.addBoxesBorders();
     this.player = new Player(this, 550, 400);
     this.enemy = new Enemy(this, 700, 325);
-    this.arrows = [];
     this.enableControls();
     this.paint();
     this.loop();
@@ -559,18 +556,36 @@ class Game {
     this.player.playerWallIntersect();
     //this.player.playerBoxIntersect();
     this.enemy.runLogic();
-    /*const currentTimestamp = Date.now();
-    // this.enemyCreationInterval--;
-    if (
-      currentTimestamp - this.lastArrowCreationTimestamp >
-      this.arrowCreationInterval
-    ) {
-      this.addArrows();
-      this.lastArrowCreationTimestamp = currentTimestamp;
+    for (let m = 0; m < this.boxes.length; m++) {
+      //if any box is in a corner spot
+      if (
+        (this.boxes[m].x === 50 && this.boxes[m].y === 300) ||
+        (this.boxes[m].x === 50 && this.boxes[m].y === 350) ||
+        (this.boxes[m].x === 150 && this.boxes[m].y === 200) ||
+        (this.boxes[m].x === 250 && this.boxes[m].y === 50) ||
+        (this.boxes[m].x === 350 && this.boxes[m].y === 50) ||
+        (this.boxes[m].x === 400 && this.boxes[m].y === 200) ||
+        (this.boxes[m].x === 450 && this.boxes[m].y === 450) ||
+        (this.boxes[m].x === 250 && this.boxes[m].y === 450) ||
+        (this.boxes[m].x === 700 && this.boxes[m].y === 300) ||
+        (this.boxes[m].x === 700 && this.boxes[m].y === 400)
+      ) {
+        this.lose();
+      }
     }
-    for (const arrow of this.arrows) {
-      arrow.runLogic();
-    }*/
+    //if all boxes are on all circles, game won
+    for (const box of this.boxes) {
+      if (
+        (box.x === 50 * 16 && box.y === 50 * 8) ||
+        (box.x === 50 * 17 && box.y === 50 * 8) ||
+        (box.x === 50 * 16 && box.y === 50 * 7) ||
+        (box.x === 50 * 17 && box.y === 50 * 7) ||
+        (box.x === 50 * 16 && box.y === 50 + 6) ||
+        (box.x === 50 * 17 && box.y === 50 * 6)
+      ) {
+        this.win();
+      }
+    }
   }
 
   checkIntersection(element) {
@@ -596,7 +611,7 @@ class Game {
       switch (key) {
         case 'ArrowUp':
           // this.player.y -= 50;
-          if (this.player.playerCanMoveUp) {
+          if (this.player.playerCanMoveUp === true) {
             this.player.move('up');
             console.log('up');
             console.log(this.player.x, this.player.y);
@@ -608,7 +623,7 @@ class Game {
 
         case 'ArrowDown':
           // this.player.y += 50;
-          if (this.player.playerCanMoveDown) {
+          if (this.player.playerCanMoveDown === true) {
             this.player.move('down');
             console.log('down');
             console.log(this.player.x, this.player.y);
@@ -620,7 +635,7 @@ class Game {
 
         case 'ArrowRight':
           // this.player.x += 50;
-          if (this.player.playerCanMoveRight) {
+          if (this.player.playerCanMoveRight === true) {
             this.player.move('right');
             console.log('right');
             console.log(this.player.x, this.player.y);
@@ -632,7 +647,7 @@ class Game {
 
         case 'ArrowLeft':
           // this.player.x -= 50;
-          if (this.player.playerCanMoveLeft) {
+          if (this.player.playerCanMoveLeft === true) {
             this.player.move('left');
             console.log('left');
             console.log(this.player.x, this.player.y);
@@ -651,31 +666,6 @@ class Game {
     });
   }
 
-  disableMoveLeft() {
-    //window.removeEventListener('keydown', (event) => {
-  }
-
-  disableMoveRight() {}
-
-  disableMoveUp() {}
-
-  disableMoveDown() {}
-
-  checkCollisions() {
-    //collision player with wall -> stop
-    //collision enemy with wall -> Stop
-    //collision with box -> either push or stop
-    //collision player with enemy -> player dead, game over
-    //collision player with enemy arrow -> player dead, game over
-  }
-
-  /*addArrows() {
-    const arrowX = enemy.x + 25;
-    const arrowY = enemy.y + 25;
-    const arrow = new Arrows(this, arrowX, arrowY);
-    this.arrows.push(arrow);
-  }*/
-
   clearScreen() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
@@ -690,38 +680,23 @@ class Game {
   }
 
   win() {
-    for (const box of this.boxes) {
-      return (
-        (box.x === 50 * 16 && box.y === 50 * 8) ||
-        (box.x === 50 * 17 && box.y === 50 * 8) ||
-        (box.x === 50 * 16 && box.y === 50 * 7) ||
-        (box.x === 50 * 17 && box.y === 50 * 7) ||
-        (box.x === 50 * 16 && box.y === 50 + 6) ||
-        (box.x === 50 * 17 && box.y === 50 * 6)
-      );
-    }
-    //if all boxes are on all circles, game won
     //if boxes are on all circles, boxes turn into friends
+    const sisterImage = new Image();
+    sisterImage.src = './images/GraveRobber.png';
+
+    const brotherImage = new Image();
+    brotherImage.src = './images/SteamMan.png';
+
+    this.context.drawImage(sisterImage, 50 * 16, 50 * 8, 50, 50);
+    this.context.drawImage(brotherImage, 50 * 17, 50 * 8, 50, 50);
+    this.context.drawImage(sisterImage, 50 * 16, 50 * 7, 50, 50);
+    this.context.drawImage(brotherImage, 50 * 17, 50 * 7, 50, 50);
+    this.context.drawImage(sisterImage, 50 * 16, 50 * 6, 50, 50);
+    this.context.drawImage(brotherImage, 50 * 17, 50 * 6, 50, 50);
   }
 
   lose() {
-    for (let m = 0; m < this.boxes.length; m++) {
-      //if any box is in a corner spot
-      if (
-        (this.boxes[m].x === 50 && this.boxes[m].y === 300) ||
-        (this.boxes[m].x === 50 && this.boxes[m].y === 350) ||
-        (this.boxes[m].x === 150 && this.boxes[m].y === 200) ||
-        (this.boxes[m].x === 250 && this.boxes[m].y === 50) ||
-        (this.boxes[m].x === 350 && this.boxes[m].y === 50) ||
-        (this.boxes[m].x === 400 && this.boxes[m].y === 200) ||
-        (this.boxes[m].x === 450 && this.boxes[m].y === 450) ||
-        (this.boxes[m].x === 250 && this.boxes[m].y === 450) ||
-        (this.boxes[m].x === 700 && this.boxes[m].y === 300) ||
-        (this.boxes[m].x === 700 && this.boxes[m].y === 400)
-      ) {
-        this.running = false;
-        this.displayScreen('gameOver');
-      } //if enemy hits player
-    }
+    this.running = false;
+    this.displayScreen('gameOver');
   }
 }
