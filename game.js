@@ -188,6 +188,15 @@ class Game {
       background.draw();
     }
 
+    const backgroundImg = new Image();
+    backgroundImg.src = './images/Tile_12.png';
+    this.context.drawImage(backgroundImg, 50 * 5, 50 * 2, 50, 50);
+    this.context.drawImage(backgroundImg, 50 * 7, 50 * 3, 50, 50);
+    this.context.drawImage(backgroundImg, 50 * 5, 50 * 4, 50, 50);
+    this.context.drawImage(backgroundImg, 50 * 7, 50 * 4, 50, 50);
+    this.context.drawImage(backgroundImg, 50 * 2, 50 * 7, 50, 50);
+    this.context.drawImage(backgroundImg, 50 * 5, 50 * 7, 50, 50);
+
     for (const box of this.boxes) {
       box.draw();
     }
@@ -275,7 +284,7 @@ class Game {
             this,
             column * GRID_SIZE,
             row * GRID_SIZE,
-            'background'
+            'box'
           );
           this.boxes.push(box);
         }
@@ -301,17 +310,6 @@ class Game {
         }
       }
     }
-  }
-
-  drawBoxes() {
-    const boxImg = new Image();
-    boxImg.src = './images/2.png';
-    this.context.drawImage(boxImg, 50 * 5, 50 * 2, 50, 50);
-    this.context.drawImage(boxImg, 50 * 7, 50 * 3, 50, 50);
-    this.context.drawImage(boxImg, 50 * 5, 50 * 4, 50, 50);
-    this.context.drawImage(boxImg, 50 * 7, 50 * 4, 50, 50);
-    this.context.drawImage(boxImg, 50 * 2, 50 * 7, 50, 50);
-    this.context.drawImage(boxImg, 50 * 5, 50 * 7, 50, 50);
   }
 
   displayScreen(name) {
@@ -341,6 +339,8 @@ class Game {
   runLogic() {
     this.player.playerWallIntersect();
     //this.player.playerBoxIntersect();
+    //this.player.playerEnemyIntersect();
+    this.player.playerAttackEnemy(this.enemy);
     this.enemy.runLogic();
     for (let m = 0; m < this.boxes.length; m++) {
       //if any box is in a corner spot
@@ -396,32 +396,24 @@ class Game {
       const key = event.code;
       switch (key) {
         case 'ArrowUp':
-          // this.player.y -= 50;
-
           this.player.move('up');
           console.log('up');
           console.log(this.player.x, this.player.y);
           break;
 
         case 'ArrowDown':
-          // this.player.y += 50;
-
           this.player.move('down');
           console.log('down');
           console.log(this.player.x, this.player.y);
           break;
 
         case 'ArrowRight':
-          // this.player.x += 50;
-
           this.player.move('right');
           console.log('right');
           console.log(this.player.x, this.player.y);
           break;
 
         case 'ArrowLeft':
-          // this.player.x -= 50;
-
           this.player.move('left');
           console.log('left');
           console.log(this.player.x, this.player.y);
@@ -445,7 +437,6 @@ class Game {
     this.clearScreen();
     //this.drawGrid();
     this.drawMap();
-    this.drawBoxes();
     this.player.paint();
     this.enemy.paint();
   }

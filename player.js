@@ -57,13 +57,191 @@ class Player {
 
   playerWallIntersect() {
     const walls = this.game.walls;
-    //let playerCanMove = true;
     this.playerCanMoveRight = true;
     this.playerCanMoveLeft = true;
     this.playerCanMoveUp = true;
     this.playerCanMoveDown = true;
 
-    for (const wall of walls) {
+    if (this.x === 550 && this.y === 400) {
+      this.playerCanMoveRight = false;
+      this.playerCanMoveLeft = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 550 && this.y === 350) {
+      this.playerCanMoveUp = false;
+    }
+    if (this.x === 600 && this.y === 350) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 650 && this.y === 350) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 700 && this.y === 300) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveLeft = false;
+    }
+    if (this.x === 750 && this.y === 300) {
+      this.playerCanMoveUp = false;
+    }
+    if (this.x === 800 && this.y === 300) {
+      this.playerCanMoveUp = false;
+    }
+    if (this.x === 850 && this.y === 300) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 850 && this.y === 350) {
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 850 && this.y === 400) {
+      this.playerCanMoveRight = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 800 && this.y === 400) {
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 750 && this.y === 400) {
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 700 && this.y === 400) {
+      this.playerCanMoveDown = false;
+      this.playerCanMoveLeft = false;
+    }
+    if (this.x === 500 && this.y === 350) {
+      this.playerCanMoveDown = false;
+      this.playerCanMoveUp = false;
+    }
+    if (this.x === 450 && this.y === 350) {
+      this.playerCanMoveUp = false;
+    }
+    if (this.x === 450 && this.y === 400) {
+      this.playerCanMoveRight = false;
+      this.playerCanMoveLeft = false;
+    }
+    if (this.x === 450 && this.y === 450) {
+      this.playerCanMoveRight = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 400 && this.y === 450) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 350 && this.y === 450) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 300 && this.y === 450) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 250 && this.y === 450) {
+      this.playerCanMoveLeft = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 250 && this.y === 400) {
+      this.playerCanMoveLeft = false;
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 200 && this.y === 350) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 150 && this.y === 350) {
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 100 && this.y === 350) {
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 50 && this.y === 350) {
+      this.playerCanMoveDown = false;
+      this.playerCanMoveLeft = false;
+    }
+    if (this.x === 50 && this.y === 300) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveLeft = false;
+    }
+    if (this.x === 100 && this.y === 300) {
+      this.playerCanMoveUp = false;
+    }
+    if (this.x === 150 && this.y === 300) {
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 150 && this.y === 250) {
+      this.playerCanMoveRight = false;
+      this.playerCanMoveLeft = false;
+    }
+    if (this.x === 150 && this.y === 200) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveLeft = false;
+    }
+    if (this.x === 200 && this.y === 200) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 250 && this.y === 150) {
+      this.playerCanMoveLeft = false;
+    }
+    if (this.x === 250 && this.y === 100) {
+      this.playerCanMoveLeft = false;
+    }
+    if (this.x === 250 && this.y === 50) {
+      this.playerCanMoveLeft = false;
+      this.playerCanMoveUp = false;
+    }
+    if (this.x === 300 && this.y === 50) {
+      this.playerCanMoveUp = false;
+    }
+    if (this.x === 350 && this.y === 50) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 350 && this.y === 100) {
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 350 && this.y === 150) {
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 350 && this.y === 200) {
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 300 && this.y === 200) {
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 250 && this.y === 250) {
+      this.playerCanMoveLeft = false;
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 250 && this.y === 300) {
+      this.playerCanMoveLeft = false;
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 400 && this.y === 200) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 400 && this.y === 250) {
+      this.playerCanMoveLeft = false;
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 400 && this.y === 300) {
+      this.playerCanMoveLeft = false;
+      this.playerCanMoveRight = false;
+    }
+    if (this.x === 350 && this.y === 350) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 300 && this.y === 350) {
+      this.playerCanMoveUp = false;
+      this.playerCanMoveDown = false;
+    }
+    if (this.x === 400 && this.y === 350) {
+      this.playerCanMoveDown = false;
+    }
+
+    /*for (const wall of walls) {
       if (this.x + 50 >= wall.x) {
         //this.playerCanMoveRight = false;
       }
@@ -76,7 +254,7 @@ class Player {
       if (this.y <= wall.y + 50) {
         //this.playerCanMoveUp = false;
       }
-    }
+    }*/
   }
 
   playerBoxIntersect() {
@@ -116,7 +294,6 @@ class Player {
   playerAttackEnemy(element) {
     //when player stands in front, behind, above or below enemy and hits space, enemy dead
     if (this.x + 50 === element.x && this.move('space')) {
-      //enemy dead
     }
     if (this.x === element.x + 50 && this.move('space')) {
       //enemy dead
@@ -137,8 +314,8 @@ class Player {
         attackImage,
         0 + 40 * Math.round(this.frame / 5),
         12,
-        40,
-        37,
+        43,
+        43,
         this.x,
         this.y,
         50,

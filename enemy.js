@@ -9,15 +9,16 @@ class Enemy {
   }
 
   runLogic() {
-    this.y++;
-    if (this.y === 360) {
-      this.y--;
+    this.y--;
+    if (this.y === 280) {
+      this.y++;
       this.x++;
       if (this.x === 825) {
-        this.y--;
+        this.y++;
         this.x--;
-        if (this.y === 250) {
+        if (this.y === 350) {
           this.x--;
+          this.y += 4;
         }
       }
     }
