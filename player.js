@@ -258,7 +258,19 @@ class Player {
   }
 
   playerBoxIntersect() {
-    const boxes = this.games.boxes;
+    const walls = this.game.walls;
+    for (const wall of walls) {
+      for (let r = 0; r < this.game.boxes.length; r++) {
+        if (this.game.boxes[r].x + 50 === this.x && this.move('left')) {
+          if (this.game.boxes[r].x === wall.x + 50) {
+            this.game.boxes[r].x += 0;
+            this.x -= 0;
+          }
+        }
+      }
+    }
+
+    /*const boxes = this.games.boxes;
     for (const box of boxes) {
       const playerAndBoxIntersect = box.checkIntersection(this);
       if (playerAndBoxIntersect) {
@@ -282,7 +294,7 @@ class Player {
         }
         // Also check if box intersects with wall
       }
-    }
+    }*/
   }
 
   playerEnemyIntersect() {

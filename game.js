@@ -338,7 +338,7 @@ class Game {
 
   runLogic() {
     this.player.playerWallIntersect();
-    //this.player.playerBoxIntersect();
+    this.player.playerBoxIntersect();
     //this.player.playerEnemyIntersect();
     this.player.playerAttackEnemy(this.enemy);
     this.enemy.runLogic();
