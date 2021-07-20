@@ -55,6 +55,10 @@ class Player {
         }
       case 'space':
         this.paintAttack();
+
+        if (this.x === 700 && this.y === 350) {
+          this.game.enemy.enemyAlive = false;
+        }
         break;
     }
   }
@@ -244,21 +248,6 @@ class Player {
     if (this.x === 400 && this.y === 350) {
       this.playerCanMoveDown = false;
     }
-
-    /*for (const wall of walls) {
-      if (this.x + 50 >= wall.x) {
-        //this.playerCanMoveRight = false;
-      }
-      if (this.x <= wall.x + 50) {
-        //this.playerCanMoveLeft = false;
-      }
-      if (this.y + 50 >= wall.y) {
-        //this.playerCanMoveDown = false;
-      }
-      if (this.y <= wall.y + 50) {
-        //this.playerCanMoveUp = false;
-      }
-    }*/
   }
 
   playerBoxIntersect() {
@@ -270,27 +259,48 @@ class Player {
           case 'up':
             //this.paintPush();
             console.log(box);
+            //if (box.boxCanMoveUp) {
             box.y -= 50;
             console.log(box);
             break;
+          //} else {
+          // box.y -= 0;
+          //break;
+          //}
+
           case 'down':
             //this.paintPush();
-            console.log(box);
+
+            //if (box.boxCanMoveDown) {
             box.y += 50;
-            console.log(box);
             break;
+            //} else {
+            // box.y += 0;
+            // break;
+            //}
+            console.log(box);
           case 'right':
             //this.paintPush();
-            console.log(box);
+
+            //if (box.boxCanMoveRight) {
             box.x += 50;
-            console.log(box);
             break;
+            //} else {
+            // box.x += 0;
+            //  break;
+            //}
+            console.log(box);
           case 'left':
             //this.paintPush();
-            console.log(box);
+            //if (box.boxCanMoveLeft) {
             box.x -= 50;
-            console.log(box);
+
             break;
+            //} else {
+            //  box.x -= 0;
+            //  break;
+            //}
+            console.log(box);
         }
         // Also check if box intersects with wall
       }
@@ -300,26 +310,6 @@ class Player {
   playerEnemyIntersect() {
     if (this.game.enemy.checkIntersection(this)) {
       this.game.lose();
-    }
-  }
-
-  playerAttackEnemy(element) {
-    //when player stands in front, behind, above or below enemy and hits space, enemy dead
-    if (this.x + 50 === element.x && this.move('space')) {
-      let enemyImg = document.getElementById('enemy');
-      enemyImg.parentNode.removeChild(enemyImg);
-    }
-    if (this.x === element.x + 50 && this.move('space')) {
-      let enemyImg = document.getElementById('enemy');
-      enemyImg.parentNode.removeChild(enemyImg);
-    }
-    if (this.y + 50 === element.y && this.move('space')) {
-      let enemyImg = document.getElementById('enemy');
-      enemyImg.parentNode.removeChild(enemyImg);
-    }
-    if (this.y === element.x + 50 && this.move('space')) {
-      let enemyImg = document.getElementById('enemy');
-      enemyImg.parentNode.removeChild(enemyImg);
     }
   }
 

@@ -13,26 +13,34 @@ class Box {
   }
 
   boxWallIntersect() {
+    this.boxCanMoveUp = true;
+    this.boxCanMoveDown = true;
+    this.boxCanMoveLeft = true;
+    this.boxCanMoveRight = true;
     const walls = this.game.walls;
     for (const wall of walls) {
       const boxWallIntersect = wall.checkIntersection(this);
       if (boxWallIntersect) {
         switch (this.game.player.direction) {
           case 'up':
-            this.game.player.paintPush();
-            this.y -= 0;
+            //this.game.player.paintPush();
+            this.boxCanMoveUp = false;
+            //this.y -= 0;
             break;
           case 'down':
-            this.game.player.paintPush();
-            this.y += 0;
+            //this.game.player.paintPush();
+            this.boxCanMoveDown = false;
+            //this.y += 0;
             break;
           case 'right':
-            this.game.player.paintPush();
-            this.x += 0;
+            //this.game.player.paintPush();
+            this.boxCanMoveRight = false;
+            //this.x += 0;
             break;
           case 'left':
-            this.game.player.paintPush();
-            this.x -= 0;
+            //this.game.player.paintPush();
+            this.boxCanMoveLeft = false;
+            //this.x -= 0;
             break;
         }
       }

@@ -7,14 +7,15 @@ class Enemy {
     this.game = game;
     this.x = x;
     this.y = y;
+    this.enemyAlive = true;
   }
 
   runLogic() {
     /*this.y--;
-    if (this.y === 280) {
+    if (this.y === 300) {
       this.y++;
       this.x++;
-      if (this.x === 825) {
+      if (this.x === 800) {
         this.y++;
         this.x--;
         if (this.y === 350) {
@@ -28,17 +29,17 @@ class Enemy {
   checkIntersection(element) {
     //check if enemy has overlapping coordinates with player
     return (
-      element.x + 51 > this.x &&
-      element.x < this.x + 51 &&
-      element.y + 51 > this.y &&
-      element.y < this.y + 51
+      element.x - 50 === this.x &&
+      //element.x === this.x &&
+      element.y - 50 === this.y
+      //element.y === this.y
     );
   }
 
   paint() {
     const context = this.game.context;
     context.save();
-    context.drawImage(enemyImage, game.enemy.x, game.enemy.y, 100, 100);
+    context.drawImage(enemyImage, game.enemy.x, game.enemy.y, 125, 125);
     context.restore();
   }
 }

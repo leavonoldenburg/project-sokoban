@@ -34,3 +34,8 @@ button {
   background-color: transparent;
   font-weight: bold;
 }
+
+img {
+  width: 300;
+  height: 300;
+}

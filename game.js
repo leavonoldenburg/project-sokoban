@@ -330,7 +330,7 @@ class Game {
     this.addBackground();
     this.addGoals();
     this.player = new Player(this, 550, 400);
-    this.enemy = new Enemy(this, 700, 325);
+    this.enemy = new Enemy(this, 700, 300);
     this.enableControls();
     this.paint();
     this.loop();
@@ -343,8 +343,7 @@ class Game {
     }
     this.player.playerWallIntersect();
     this.player.playerBoxIntersect();
-    //this.player.playerEnemyIntersect();
-    this.player.playerAttackEnemy(this.enemy);
+    this.player.playerEnemyIntersect();
     this.enemy.runLogic();
     for (let m = 0; m < this.boxes.length; m++) {
       //if any box is in a corner spot
@@ -364,37 +363,40 @@ class Game {
       }
     }
     //if all boxes are on all circles, game won
-
-    for (const box of this.boxes) {
-      for (const goal of this.goals) {
-        if (box.x === goal.x && box.y === goal.y) {
-          /*if (
-        box.x === 50 * 16 &&
-        box.y === 50 * 8 &&
-        box.x === 50 * 17 &&
-        box.y === 50 * 8 &&
-        box.x === 50 * 16 &&
-        box.y === 50 * 7 &&
-        box.x === 50 * 17 &&
-        box.y === 50 * 7 &&
-        box.x === 50 * 16 &&
-        box.y === 50 + 6 &&
-        box.x === 50 * 17 &&
-        box.y === 50 * 6
-      )*/
+    for (let q = 0; q < this.boxes.length; q++) {
+      for (let p = 0; p < this.goals.length; p++) {
+        if (
+          this.boxes[q].x === this.goals[p].x &&
+          this.boxes[q].y === this.goals[p].y
+        ) {
           window.setTimeout(this.win(), 3000);
         }
       }
     }
-  }
 
-  checkIntersection(element) {
-    /*return (
-      element.x + 50 >= this.x ||
-      element.x <= this.x + 50 ||
-      element.y + 50 >= this.y ||
-      element.y <= this.y + 50
-    );*/
+    //for (const box of this.boxes) {
+    //for (const goal of this.goals) {
+
+    //if (box.x === goal.x && box.y === goal.y) {
+
+    /*if (
+        box.x === 50 * 16 &&
+        box.y === 50 * 8 ||
+        box.x === 50 * 17 &&
+        box.y === 50 * 8 ||
+        box.x === 50 * 16 &&
+        box.y === 50 * 7 ||
+        box.x === 50 * 17 &&
+        box.y === 50 * 7 ||
+        box.x === 50 * 16 &&
+        box.y === 50 + 6 ||
+        box.x === 50 * 17 &&
+        box.y === 50 * 6
+      )*/
+
+    //}
+    //}
+    //}
   }
 
   loop() {
@@ -437,9 +439,9 @@ class Game {
 
         case 'Space':
           this.player.move('space');
+          break;
           console.log('attack');
           console.log(this.player.x, this.player.y);
-          break;
       }
     });
   }
@@ -453,7 +455,9 @@ class Game {
     //this.drawGrid();
     this.drawMap();
     this.player.paint();
-    this.enemy.paint();
+    if (this.enemy.enemyAlive) {
+      this.enemy.paint();
+    }
   }
 
   win() {
