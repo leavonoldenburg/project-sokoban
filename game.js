@@ -196,14 +196,20 @@ class Game {
     this.context.drawImage(backgroundImg, 50 * 7, 50 * 4, 50, 50);
     this.context.drawImage(backgroundImg, 50 * 2, 50 * 7, 50, 50);
     this.context.drawImage(backgroundImg, 50 * 5, 50 * 7, 50, 50);
+    this.context.drawImage(backgroundImg, 50 * 16, 50 * 8, 50, 50);
+    this.context.drawImage(backgroundImg, 50 * 16, 50 * 7, 50, 50);
+    this.context.drawImage(backgroundImg, 50 * 17, 50 * 7, 50, 50);
+    this.context.drawImage(backgroundImg, 50 * 16, 50 * 6, 50, 50);
+    this.context.drawImage(backgroundImg, 50 * 17, 50 * 6, 50, 50);
+    this.context.drawImage(backgroundImg, 50 * 17, 50 * 8, 50, 50);
 
     for (const box of this.boxes) {
       box.draw();
     }
 
-    for (const goal of this.goals) {
+    /*for (const goal of this.goals) {
       goal.draw();
-    }
+    }*/
 
     this.context.fillStyle = '#6a9423';
     this.context.beginPath();
@@ -280,12 +286,7 @@ class Game {
       for (let column = 0; column < wallMap[row].length; column++) {
         const value = wallMap[row][column];
         if (value === 'B') {
-          const box = new Wall(
-            this,
-            column * GRID_SIZE,
-            row * GRID_SIZE,
-            'box'
-          );
+          const box = new Box(this, column * GRID_SIZE, row * GRID_SIZE, 'box');
           this.boxes.push(box);
         }
       }
@@ -337,6 +338,9 @@ class Game {
   }
 
   runLogic() {
+    for (const box of this.boxes) {
+      box.boxWallIntersect();
+    }
     this.player.playerWallIntersect();
     this.player.playerBoxIntersect();
     //this.player.playerEnemyIntersect();
@@ -360,35 +364,47 @@ class Game {
       }
     }
     //if all boxes are on all circles, game won
+
     for (const box of this.boxes) {
-      if (
-        (box.x === 50 * 16 && box.y === 50 * 8) ||
-        (box.x === 50 * 17 && box.y === 50 * 8) ||
-        (box.x === 50 * 16 && box.y === 50 * 7) ||
-        (box.x === 50 * 17 && box.y === 50 * 7) ||
-        (box.x === 50 * 16 && box.y === 50 + 6) ||
-        (box.x === 50 * 17 && box.y === 50 * 6)
-      ) {
-        this.win();
+      for (const goal of this.goals) {
+        if (box.x === goal.x && box.y === goal.y) {
+          /*if (
+        box.x === 50 * 16 &&
+        box.y === 50 * 8 &&
+        box.x === 50 * 17 &&
+        box.y === 50 * 8 &&
+        box.x === 50 * 16 &&
+        box.y === 50 * 7 &&
+        box.x === 50 * 17 &&
+        box.y === 50 * 7 &&
+        box.x === 50 * 16 &&
+        box.y === 50 + 6 &&
+        box.x === 50 * 17 &&
+        box.y === 50 * 6
+      )*/
+          window.setTimeout(this.win(), 3000);
+        }
       }
     }
   }
 
   checkIntersection(element) {
-    return (
+    /*return (
       element.x + 50 >= this.x ||
       element.x <= this.x + 50 ||
       element.y + 50 >= this.y ||
       element.y <= this.y + 50
-    );
+    );*/
   }
 
   loop() {
-    this.runLogic();
-    this.paint();
-    window.requestAnimationFrame(() => {
-      this.loop();
-    });
+    if (this.running) {
+      this.runLogic();
+      this.paint();
+      window.requestAnimationFrame(() => {
+        this.loop();
+      });
+    }
   }
 
   enableControls() {
@@ -420,7 +436,6 @@ class Game {
           break;
 
         case 'Space':
-          // this.player.x -= 50;
           this.player.move('space');
           console.log('attack');
           console.log(this.player.x, this.player.y);

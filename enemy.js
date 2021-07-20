@@ -1,5 +1,6 @@
 const enemyImage = new Image();
 enemyImage.src = './images/0_Golem_Walking_000.png';
+enemyImage.id = 'enemy';
 
 class Enemy {
   constructor(game, x, y) {
@@ -9,7 +10,7 @@ class Enemy {
   }
 
   runLogic() {
-    this.y--;
+    /*this.y--;
     if (this.y === 280) {
       this.y++;
       this.x++;
@@ -21,16 +22,16 @@ class Enemy {
           this.y += 4;
         }
       }
-    }
+    }*/
   }
 
   checkIntersection(element) {
     //check if enemy has overlapping coordinates with player
     return (
-      element.x + 50 > this.x ||
-      element.x < this.x + 50 ||
-      element.y + 50 > this.y ||
-      element.y < this.y + 50
+      element.x + 51 > this.x &&
+      element.x < this.x + 51 &&
+      element.y + 51 > this.y &&
+      element.y < this.y + 51
     );
   }
 

@@ -1,3 +1,6 @@
+const boxImg = new Image();
+boxImg.src = './images/2.png';
+
 class Box {
   constructor(game, x, y) {
     this.game = game;
@@ -5,27 +8,59 @@ class Box {
     this.y = y;
   }
 
+  draw() {
+    this.game.context.drawImage(boxImg, this.x, this.y, 50, 50);
+  }
+
   boxWallIntersect() {
-    const walls = this.games.walls;
+    const walls = this.game.walls;
     for (const wall of walls) {
       const boxWallIntersect = wall.checkIntersection(this);
       if (boxWallIntersect) {
-        switch (direction) {
+        switch (this.game.player.direction) {
           case 'up':
-            this.paintPush();
-            box.y -= 0;
+            this.game.player.paintPush();
+            this.y -= 0;
             break;
           case 'down':
-            this.paintPush();
-            box.y += 0;
+            this.game.player.paintPush();
+            this.y += 0;
             break;
           case 'right':
-            this.paintPush();
-            box.x += 0;
+            this.game.player.paintPush();
+            this.x += 0;
             break;
           case 'left':
-            this.paintPush();
-            box.x -= 0;
+            this.game.player.paintPush();
+            this.x -= 0;
+            break;
+        }
+      }
+    }
+  }
+
+  BoxBoxIntersect() {
+    for (let s = 0; s < this.game.boxes.length; s++) {}
+
+    for (const box of this.game.boxes) {
+      const boxAndBoxIntersect = box.checkIntersection(this);
+      if (boxAndBoxIntersect) {
+        switch (this.game.player.direction) {
+          case 'up':
+            this.game.player.paintPush();
+            this.y -= 0;
+            break;
+          case 'down':
+            this.game.player.paintPush();
+            this.y += 0;
+            break;
+          case 'right':
+            this.game.player.paintPush();
+            this.x += 0;
+            break;
+          case 'left':
+            this.game.player.paintPush();
+            this.x -= 0;
             break;
         }
       }
@@ -34,10 +69,10 @@ class Box {
 
   checkIntersection(element) {
     return (
-      element.x + 50 >= this.x ||
-      element.x <= this.x + 50 ||
-      element.y + 50 >= this.y ||
-      element.y <= this.y + 50
+      element.x >= this.x &&
+      element.x <= this.x + 49 &&
+      element.y >= this.y &&
+      element.y <= this.y + 49
     );
   }
 }

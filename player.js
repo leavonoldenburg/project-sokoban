@@ -19,34 +19,38 @@ class Player {
     switch (direction) {
       case 'up':
         if (this.playerCanMoveUp) {
+          this.direction = 'up';
           this.y -= 50;
           break;
         } else {
-          this.player.y -= 0;
+          this.y -= 0;
           break;
         }
       case 'down':
         if (this.playerCanMoveDown) {
+          this.direction = 'down';
           this.y += 50;
           break;
         } else {
-          this.player.y += 0;
+          this.y += 0;
           break;
         }
       case 'right':
         if (this.playerCanMoveRight) {
+          this.direction = 'right';
           this.x += 50;
           break;
         } else {
-          this.player.x += 0;
+          this.x += 0;
           break;
         }
       case 'left':
         if (this.playerCanMoveLeft) {
+          this.direction = 'left';
           this.x -= 50;
           break;
         } else {
-          this.player.x += 0;
+          this.x += 0;
           break;
         }
       case 'space':
@@ -258,43 +262,39 @@ class Player {
   }
 
   playerBoxIntersect() {
-    const walls = this.game.walls;
-    for (const wall of walls) {
-      for (let r = 0; r < this.game.boxes.length; r++) {
-        if (this.game.boxes[r].x + 50 === this.x && this.move('left')) {
-          if (this.game.boxes[r].x === wall.x + 50) {
-            this.game.boxes[r].x += 0;
-            this.x -= 0;
-          }
-        }
-      }
-    }
-
-    /*const boxes = this.games.boxes;
+    const boxes = this.game.boxes;
     for (const box of boxes) {
       const playerAndBoxIntersect = box.checkIntersection(this);
       if (playerAndBoxIntersect) {
-        switch (direction) {
+        switch (this.direction) {
           case 'up':
-            this.paintPush();
+            //this.paintPush();
+            console.log(box);
             box.y -= 50;
+            console.log(box);
             break;
           case 'down':
-            this.paintPush();
+            //this.paintPush();
+            console.log(box);
             box.y += 50;
+            console.log(box);
             break;
           case 'right':
-            this.paintPush();
+            //this.paintPush();
+            console.log(box);
             box.x += 50;
+            console.log(box);
             break;
           case 'left':
-            this.paintPush();
+            //this.paintPush();
+            console.log(box);
             box.x -= 50;
+            console.log(box);
             break;
         }
         // Also check if box intersects with wall
       }
-    }*/
+    }
   }
 
   playerEnemyIntersect() {
@@ -306,15 +306,20 @@ class Player {
   playerAttackEnemy(element) {
     //when player stands in front, behind, above or below enemy and hits space, enemy dead
     if (this.x + 50 === element.x && this.move('space')) {
+      let enemyImg = document.getElementById('enemy');
+      enemyImg.parentNode.removeChild(enemyImg);
     }
     if (this.x === element.x + 50 && this.move('space')) {
-      //enemy dead
+      let enemyImg = document.getElementById('enemy');
+      enemyImg.parentNode.removeChild(enemyImg);
     }
     if (this.y + 50 === element.y && this.move('space')) {
-      //enemy dead
+      let enemyImg = document.getElementById('enemy');
+      enemyImg.parentNode.removeChild(enemyImg);
     }
     if (this.y === element.x + 50 && this.move('space')) {
-      //enemy dead
+      let enemyImg = document.getElementById('enemy');
+      enemyImg.parentNode.removeChild(enemyImg);
     }
   }
 

@@ -16,11 +16,16 @@ const game = new Game(canvasElement, screenElements);
 
 const startButton = screenStartElement.querySelector('button');
 const tryAgainButton = screenGameOverElement.querySelector('button');
+const playAgainButton = screenGameWonElement.querySelector('button');
 
 startButton.addEventListener('click', () => {
   game.start();
 });
 
 tryAgainButton.addEventListener('click', () => {
+  game.start();
+});
+
+playAgainButton.addEventListener('click', () => {
   game.start();
 });

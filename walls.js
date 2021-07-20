@@ -43,9 +43,6 @@ leftSideImage.src = './images/Tile_37.png';
 const backgroundImg = new Image();
 backgroundImg.src = './images/Tile_12.png';
 
-const boxImg = new Image();
-boxImg.src = './images/2.png';
-
 const allImages = {
   leftUpperCorner: leftUpperCornerImage,
   rightUpperCorner: rightUpperCornerImage,
@@ -80,16 +77,16 @@ class Wall {
     this.game.context.drawImage(image, this.x, this.y, 50, 50);
   }
 
-  /*checkIntersection(element) {
+  checkIntersection(element) {
     return (
-      element.x + 50 >= this.x ||
+      element.x + 50 >= this.x &&
       //disable moving right
-      element.x <= this.x + 50 ||
+      element.x <= this.x + 50 &&
       //disable moving left
-      element.y + 50 >= this.y ||
+      element.y + 50 >= this.y &&
       //disable moving down
       element.y <= this.y + 50
       //disable moving up
     );
-  }*/
+  }
 }
