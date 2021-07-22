@@ -79,13 +79,13 @@ class Wall {
 
   checkIntersection(element) {
     return (
-      element.x + 50 >= this.x &&
+      element.x + 49 >= this.x &&
       //disable moving right
-      element.x <= this.x + 50 &&
+      element.x <= this.x + 49 &&
       //disable moving left
-      element.y + 50 >= this.y &&
+      element.y + 49 >= this.y &&
       //disable moving down
-      element.y <= this.y + 50
+      element.y <= this.y + 49
       //disable moving up
     );
   }

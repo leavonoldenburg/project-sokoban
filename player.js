@@ -16,50 +16,65 @@ class Player {
   }
 
   move(direction) {
+    // this.player.playerWallIntersect();
+    // this.player.playerBoxIntersect();
+    let newX = this.x;
+    let newY = this.y;
     switch (direction) {
       case 'up':
-        if (this.playerCanMoveUp) {
-          this.direction = 'up';
-          this.y -= 50;
-          break;
-        } else {
-          this.y -= 0;
-          break;
-        }
+        this.direction = 'up';
+        newY -= 50;
+        break;
       case 'down':
-        if (this.playerCanMoveDown) {
-          this.direction = 'down';
-          this.y += 50;
-          break;
-        } else {
-          this.y += 0;
-          break;
-        }
+        this.direction = 'down';
+        newY += 50;
+        break;
       case 'right':
-        if (this.playerCanMoveRight) {
-          this.direction = 'right';
-          this.x += 50;
-          break;
-        } else {
-          this.x += 0;
-          break;
-        }
+        this.direction = 'right';
+        newX += 50;
+        break;
       case 'left':
-        if (this.playerCanMoveLeft) {
-          this.direction = 'left';
-          this.x -= 50;
-          break;
-        } else {
-          this.x += 0;
-          break;
-        }
+        this.direction = 'left';
+        newX -= 50;
+        break;
       case 'space':
         this.paintAttack();
-
         if (this.x === 700 && this.y === 350) {
           this.game.enemy.enemyAlive = false;
         }
+        if (!this.game.enemy.enemyAlive) {
+          this.game.enemy.x = 0;
+          this.game.enemy.y = 0;
+        }
         break;
+    }
+
+    let playerCanMove = true;
+
+    for (const wall of this.game.walls) {
+      const playerAndWallIntersect = wall.checkIntersection({
+        x: newX,
+        y: newY
+      });
+      if (playerAndWallIntersect) {
+        playerCanMove = false;
+      }
+    }
+
+    const boxes = this.game.boxes;
+    for (const box of boxes) {
+      const playerAndBoxIntersect = box.checkIntersection({ x: newX, y: newY });
+      if (playerAndBoxIntersect) {
+        const boxMoved = box.move(direction);
+        if (!boxMoved) {
+          playerCanMove = false;
+        }
+      }
+    }
+
+    if (playerCanMove) {
+      this.x = newX;
+      this.y = newY;
     }
   }
 
@@ -257,52 +272,20 @@ class Player {
       if (playerAndBoxIntersect) {
         switch (this.direction) {
           case 'up':
-            //this.paintPush();
-            console.log(box);
-            //if (box.boxCanMoveUp) {
             box.y -= 50;
-            console.log(box);
             break;
-          //} else {
-          // box.y -= 0;
-          //break;
-          //}
 
           case 'down':
-            //this.paintPush();
-
-            //if (box.boxCanMoveDown) {
             box.y += 50;
             break;
-            //} else {
-            // box.y += 0;
-            // break;
-            //}
-            console.log(box);
-          case 'right':
-            //this.paintPush();
 
-            //if (box.boxCanMoveRight) {
+          case 'right':
             box.x += 50;
             break;
-            //} else {
-            // box.x += 0;
-            //  break;
-            //}
-            console.log(box);
-          case 'left':
-            //this.paintPush();
-            //if (box.boxCanMoveLeft) {
-            box.x -= 50;
 
-            break;
-            //} else {
-            //  box.x -= 0;
-            //  break;
-            //}
-            console.log(box);
+          case 'left':
+            box.x -= 50;
         }
-        // Also check if box intersects with wall
       }
     }
   }
@@ -332,25 +315,6 @@ class Player {
       this.frame++;
       this.frame %= 60;
     });
-  }
-
-  paintPush() {
-    const context = this.game.context;
-    context.save();
-    context.drawImage(
-      pushImage,
-      0 + 40 * Math.round(this.frame / 10),
-      12,
-      40,
-      37,
-      this.x,
-      this.y,
-      50,
-      50
-    );
-    context.restore();
-    this.frame++;
-    this.frame %= 50;
   }
 
   paint() {

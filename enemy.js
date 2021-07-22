@@ -11,19 +11,7 @@ class Enemy {
   }
 
   runLogic() {
-    /*this.y--;
-    if (this.y === 300) {
-      this.y++;
-      this.x++;
-      if (this.x === 800) {
-        this.y++;
-        this.x--;
-        if (this.y === 350) {
-          this.x--;
-          this.y += 4;
-        }
-      }
-    }*/
+    this.x -= 0.1;
   }
 
   checkIntersection(element) {

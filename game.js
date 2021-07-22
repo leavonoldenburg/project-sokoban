@@ -158,6 +158,7 @@ class Game {
     this.context = canvas.getContext('2d');
     this.screens = screens;
     this.running = false;
+    this.enableControls();
   }
 
   /*drawGrid() {
@@ -203,14 +204,6 @@ class Game {
     this.context.drawImage(backgroundImg, 50 * 17, 50 * 6, 50, 50);
     this.context.drawImage(backgroundImg, 50 * 17, 50 * 8, 50, 50);
 
-    for (const box of this.boxes) {
-      box.draw();
-    }
-
-    /*for (const goal of this.goals) {
-      goal.draw();
-    }*/
-
     this.context.fillStyle = '#6a9423';
     this.context.beginPath();
     this.context.arc(50 * 16 + 25, 50 * 8 + 25, 10, 0, 2 * Math.PI);
@@ -236,6 +229,12 @@ class Game {
     this.context.arc(50 * 17 + 25, 50 * 6 + 25, 10, 0, 2 * Math.PI);
     this.context.fill();
     this.context.closePath();
+  }
+
+  drawBoxes() {
+    for (const box of this.boxes) {
+      box.draw();
+    }
   }
 
   addMapBorders() {
@@ -331,7 +330,6 @@ class Game {
     this.addGoals();
     this.player = new Player(this, 550, 400);
     this.enemy = new Enemy(this, 700, 300);
-    this.enableControls();
     this.paint();
     this.loop();
     this.displayScreen('playing');
@@ -341,8 +339,7 @@ class Game {
     for (const box of this.boxes) {
       box.boxWallIntersect();
     }
-    this.player.playerWallIntersect();
-    this.player.playerBoxIntersect();
+
     this.player.playerEnemyIntersect();
     this.enemy.runLogic();
     for (let m = 0; m < this.boxes.length; m++) {
@@ -363,40 +360,17 @@ class Game {
       }
     }
     //if all boxes are on all circles, game won
-    for (let q = 0; q < this.boxes.length; q++) {
-      for (let p = 0; p < this.goals.length; p++) {
-        if (
-          this.boxes[q].x === this.goals[p].x &&
-          this.boxes[q].y === this.goals[p].y
-        ) {
-          window.setTimeout(this.win(), 3000);
+    this.boxesongoal = [];
+    for (const box of this.boxes) {
+      for (const goal of this.goals) {
+        if (box.x === goal.x && box.y === goal.y) {
+          this.boxesongoal.push(box);
         }
       }
     }
-
-    //for (const box of this.boxes) {
-    //for (const goal of this.goals) {
-
-    //if (box.x === goal.x && box.y === goal.y) {
-
-    /*if (
-        box.x === 50 * 16 &&
-        box.y === 50 * 8 ||
-        box.x === 50 * 17 &&
-        box.y === 50 * 8 ||
-        box.x === 50 * 16 &&
-        box.y === 50 * 7 ||
-        box.x === 50 * 17 &&
-        box.y === 50 * 7 ||
-        box.x === 50 * 16 &&
-        box.y === 50 + 6 ||
-        box.x === 50 * 17 &&
-        box.y === 50 * 6
-      )*/
-
-    //}
-    //}
-    //}
+    if (this.boxesongoal.length === 6) {
+      this.win();
+    }
   }
 
   loop() {
@@ -454,6 +428,7 @@ class Game {
     this.clearScreen();
     //this.drawGrid();
     this.drawMap();
+    this.drawBoxes();
     this.player.paint();
     if (this.enemy.enemyAlive) {
       this.enemy.paint();
@@ -461,20 +436,6 @@ class Game {
   }
 
   win() {
-    //if boxes are on all circles, boxes turn into friends
-    const sisterImage = new Image();
-    sisterImage.src = './images/GraveRobber.png';
-
-    const brotherImage = new Image();
-    brotherImage.src = './images/SteamMan.png';
-
-    this.context.drawImage(sisterImage, 50 * 16, 50 * 8, 50, 50);
-    this.context.drawImage(brotherImage, 50 * 17, 50 * 8, 50, 50);
-    this.context.drawImage(sisterImage, 50 * 16, 50 * 7, 50, 50);
-    this.context.drawImage(brotherImage, 50 * 17, 50 * 7, 50, 50);
-    this.context.drawImage(sisterImage, 50 * 16, 50 * 6, 50, 50);
-    this.context.drawImage(brotherImage, 50 * 17, 50 * 6, 50, 50);
-
     this.running = false;
     this.displayScreen('gameWon');
   }
