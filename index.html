@@ -9,12 +9,12 @@
   <body>
     <div class="screen" id="screen-start">
       <h1>The Golem Took My Family</h1>
-      <h3>
+      <p>
         Your family has been kidnapped by the Golem and dragged into his lair in
-        the swamp.
-        <br />
-        To free them, you have to first kill the golem with your axe[]
-      </h3>
+        the swamp. To free them, you have to first kill the golem with your axe
+        [SPACE] and second move the boxes [ARROW KEYS] in which your family is
+        being held, to the marked spots on the ground.
+      </p>
       <button>Start Game</button>
     </div>
     <div class="screen" id="screen-playing" style="display: none">
@@ -22,12 +22,14 @@
     </div>
     <div class="screen" id="screen-game-over" style="display: none">
       <h1>You lost the game :(</h1>
+      <button>Try again</button>
     </div>
     <div class="screen" id="screen-game-won" style="display: none">
       <h1>You won the game :)</h1>
       <img src="./images/Woodcutter.png" alt="playerImage" />
       <img src="./images/GraveRobber.png" alt="sisterImage" />
       <img src="./images/SteamMan.png" alt="brotherImage" />
+      <button>Play again</button>
     </div>
 
     <script src="/box.js"></script>

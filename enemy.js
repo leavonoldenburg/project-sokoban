@@ -10,9 +10,7 @@ class Enemy {
     this.enemyAlive = true;
   }
 
-  runLogic() {
-    this.x -= 0.1;
-  }
+  runLogic() {}
 
   checkIntersection(element) {
     //check if enemy has overlapping coordinates with player

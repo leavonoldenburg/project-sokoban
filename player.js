@@ -78,7 +78,7 @@ class Player {
     }
   }
 
-  playerWallIntersect() {
+  /*playerWallIntersect() {
     const walls = this.game.walls;
     this.playerCanMoveRight = true;
     this.playerCanMoveLeft = true;
@@ -263,7 +263,7 @@ class Player {
     if (this.x === 400 && this.y === 350) {
       this.playerCanMoveDown = false;
     }
-  }
+  }*/
 
   playerBoxIntersect() {
     const boxes = this.game.boxes;
