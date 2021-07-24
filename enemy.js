@@ -11,7 +11,7 @@ class Enemy {
   }
 
   runLogic() {
-    this.x = this.x - 0.3;
+    this.x = this.x - 0.7;
   }
 
   checkIntersection(element) {
