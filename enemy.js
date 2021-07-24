@@ -10,22 +10,24 @@ class Enemy {
     this.enemyAlive = true;
   }
 
-  runLogic() {}
+  runLogic() {
+    this.x = this.x - 0.3;
+  }
 
   checkIntersection(element) {
     //check if enemy has overlapping coordinates with player
     return (
-      element.x - 50 === this.x &&
-      //element.x === this.x &&
-      element.y - 50 === this.y
-      //element.y === this.y
+      element.x >= this.x &&
+      element.x <= this.x + 50 &&
+      element.y >= this.y &&
+      element.y - 50 <= this.y
     );
   }
 
   paint() {
     const context = this.game.context;
     context.save();
-    context.drawImage(enemyImage, game.enemy.x, game.enemy.y, 125, 125);
+    context.drawImage(enemyImage, game.enemy.x, game.enemy.y, 100, 100);
     context.restore();
   }
 }

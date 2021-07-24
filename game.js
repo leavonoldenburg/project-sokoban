@@ -329,17 +329,16 @@ class Game {
     this.addBackground();
     this.addGoals();
     this.player = new Player(this, 550, 400);
-    this.enemy = new Enemy(this, 700, 300);
+    this.enemy = new Enemy(this, 700, 320);
     this.paint();
     this.loop();
     this.displayScreen('playing');
   }
 
   runLogic() {
-    for (const box of this.boxes) {
+    /*for (const box of this.boxes) {
       box.boxWallIntersect();
-    }
-
+    }*/
     this.player.playerEnemyIntersect();
     this.enemy.runLogic();
     for (let m = 0; m < this.boxes.length; m++) {
