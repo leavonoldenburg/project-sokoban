@@ -336,9 +336,6 @@ class Game {
   }
 
   runLogic() {
-    /*for (const box of this.boxes) {
-      box.boxWallIntersect();
-    }*/
     this.player.playerEnemyIntersect();
     this.enemy.runLogic();
     for (let m = 0; m < this.boxes.length; m++) {
@@ -412,9 +409,9 @@ class Game {
 
         case 'Space':
           this.player.move('space');
-          break;
           console.log('attack');
           console.log(this.player.x, this.player.y);
+          break;
       }
     });
   }
