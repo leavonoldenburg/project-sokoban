@@ -17,29 +17,31 @@ class Player {
   }
 
   move(direction) {
-    // this.player.playerWallIntersect();
-    // this.player.playerBoxIntersect();
     let newX = this.x;
     let newY = this.y;
     switch (direction) {
       case 'up':
+        this.paintPlayer = true;
         this.direction = 'up';
         newY -= 50;
         break;
       case 'down':
+        this.paintPlayer = true;
         this.direction = 'down';
         newY += 50;
         break;
       case 'right':
+        this.paintPlayer = true;
         this.direction = 'right';
         newX += 50;
         break;
       case 'left':
+        this.paintPlayer = true;
         this.direction = 'left';
         newX -= 50;
         break;
       case 'space':
-        this.paintAttack();
+        this.paintPlayer = false;
         if (this.x < this.game.enemy.x && this.x + 20 >= this.game.enemy.x) {
           this.game.enemy.enemyAlive = false;
         }
@@ -102,6 +104,7 @@ class Player {
 
           case 'left':
             box.x -= 50;
+            break;
         }
       }
     }
@@ -116,22 +119,20 @@ class Player {
   paintAttack() {
     const context = this.game.context;
     context.save();
-    window.requestAnimationFrame(() => {
-      context.drawImage(
-        attackImage,
-        0 + 43 * Math.round(this.frame / 2),
-        8,
-        43,
-        43,
-        this.x,
-        this.y,
-        50,
-        50
-      );
-      context.restore();
-      this.frame++;
-      this.frame %= 60;
-    });
+    context.drawImage(
+      attackImage,
+      0 + 49 * Math.round(this.frame / 10),
+      6,
+      49,
+      43,
+      this.x,
+      this.y,
+      50,
+      50
+    );
+    context.restore();
+    this.frame++;
+    this.frame %= 50;
   }
 
   paint() {
@@ -140,6 +141,8 @@ class Player {
       context.save();
       context.drawImage(playerImage, 0, 12, 40, 37, this.x, this.y, 50, 50);
       context.restore();
+    } else {
+      this.paintAttack();
     }
   }
 }
